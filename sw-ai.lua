@@ -31,7 +31,7 @@ do
     click(victory)
     local chest = wait(chestCenter, 5)
     click(chest)
-    local ok = exists(okButton, 5)
+    local ok = exists(okButton, 8)
     if ok then click(ok)
     else
         if mustSellRunes == true then
