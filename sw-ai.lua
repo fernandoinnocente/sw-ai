@@ -21,6 +21,8 @@ sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
 okButton = Pattern("ok.en.png")
 dialogButton = Pattern("sellButton.png")
+leftSide = Region(0,0,480,540)
+rightSide = Region(480,0,480,540)
 
 -- ==========  main program ===========
 
@@ -44,6 +46,6 @@ do
             click(get)
         end
     end
-    local repeatButton = wait(repeat3, 3)
+    local repeatButton = leftSide:wait(repeat3, 3)
     click(repeatButton)
 end
