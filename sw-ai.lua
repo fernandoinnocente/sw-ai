@@ -19,7 +19,7 @@ repeat4 = Pattern("require4.png")
 repeat5 = Pattern("require5.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okButton = Pattern("ok.en.png")
+okButton = Pattern("ok.en.png"):similar(0.4)
 
 -- ==========  main program ===========
 
