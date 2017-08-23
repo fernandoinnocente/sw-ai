@@ -12,7 +12,7 @@ dialogShow("Configurações")
 -- ==========  patterns ===========
 
 startButton = Pattern("flash.png")
-victoryDiamond = Pattern("victoryDiamond.png")
+victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
 chestCenter = Pattern("box.png")
 repeat3 = Pattern("require3.png")
 repeat4 = Pattern("require4.png")
