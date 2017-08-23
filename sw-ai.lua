@@ -19,6 +19,7 @@ repeat4 = Pattern("require4.png")
 repeat5 = Pattern("require5.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
+okRegion = Region(350,400,200, 100)
 okButton = Pattern("ok.en.png"):similar(0.4)
 dialogButton = Pattern("sellButton.png")
 leftSide = Region(0,0,480,540)
@@ -34,8 +35,7 @@ do
     click(victory)
     local chest = wait(chestCenter, 5)
     click(chest)
-    wait(dialogButton, 3)
-    local ok = exists(okButton, 3)
+    local ok = okRegion:exists(okButton, 3)
     if ok then click(ok)
     else
         if mustSellRunes == true then
