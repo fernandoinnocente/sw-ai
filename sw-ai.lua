@@ -51,10 +51,9 @@ do
     click(scanPattern(startButton, 5))
     click(scanPattern(victoryDiamond, 120))
     click(scanPattern(chest, 5))
-    local hasButtons = scanPattern(dialogButton, 5, rewardButtonsRegion)
-    print(hasButtons)
-    if(rewardButtonsRegion:findAll(dialogButton).size() == 1) then
-        click(scanPattern(okButton))
+    local ok = scanPattern(okButton, 5, rewardButtonsRegion)
+    if(ok) then
+        click(ok)
     else
         if mustSellRunes == true then
             click(scanPattern(sellButton, 3, rewardButtonsRegion))
