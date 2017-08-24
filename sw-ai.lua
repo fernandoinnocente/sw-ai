@@ -17,7 +17,7 @@ chestCenter = Pattern("box.png")
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okButton = Pattern("ok.en.png"):similar(0.4)
+okButton = Pattern("okButton.png")
 dialogButton = Pattern("sellButton.png")
 
 rewardButtonsRegion = Region(250,400,380, 100)
@@ -50,8 +50,9 @@ while(true)
 do
     click(scanPattern(startButton, 5))
     click(scanPattern(victoryDiamond, 120))
-    click(scanPattern(chest, 5))
-    local ok = scanPattern(okButton, 5, rewardButtonsRegion)
+    wait(1)
+    click(rightSide)
+    local ok = scanPattern(okButton, 3, rewardButtonsRegion)
     if(ok) then
         click(ok)
     else
