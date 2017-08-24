@@ -14,14 +14,13 @@ dialogShow("Configurações")
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
 chestCenter = Pattern("box.png")
-repeat3 = Pattern("require3.png")
-repeat4 = Pattern("require4.png")
-repeat5 = Pattern("require5.png")
+repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okRegion = Region(350,400,200, 100)
 okButton = Pattern("ok.en.png"):similar(0.4)
 dialogButton = Pattern("sellButton.png")
+
+rewardButtonsRegion = Region(250,400,380, 100)
 leftSide = Region(0,0,480,540)
 rightSide = Region(480,0,480,540)
 
@@ -29,23 +28,37 @@ rightSide = Region(480,0,480,540)
 
 while(true)
 do
-    local start = wait(startButton, 5)
-    click(start)
-    local victory = wait(victoryDiamond, 120)
-    click(victory)
-    local chest = wait(chestCenter, 5)
-    click(chest)
-    local ok = okRegion:exists(okButton, 3)
-    if ok then click(ok)
+    click(scanPattern(startButton, 5))
+    click(scanPattern(victoryDiamond, 120))
+    click(scanPattern(chest, 5))
+    wait(1)
+    local buttons = rewardButtonsRegion:findAll(dialogButton)
+    if(buttons.size() == 1) then
+        click(scanPattern(okButton))
     else
         if mustSellRunes == true then
-            local sell = wait(sellButton, 3)
-            click(sell)
+            click(scanPattern(sellButton, 3, rewardButtonsRegion))
         else
-            local get = wait(getButton, 3)
-            click(get)
+            click(scanPattern(getButton, 3, rewardButtonsRegion))
         end
     end
-    local repeatButton = leftSide:wait(repeat3, 3)
-    click(repeatButton)
+    click(scanPattern(repeatButton, 3, leftSide))
+end
+
+function scanPattern(pattern, time, region)
+    if not region then region = Region(0,0,960,540) end
+    if not pattern then return end
+    if not time then time = 0 end
+    local counter = -1;
+    local patternFound;
+    while(counter < time)
+    do
+        patternFound = region:exists(pattern)
+        if(patternFound) then break
+        else
+            wait(1)
+            counter = counter + 1
+        end
+    end
+    return patternFound
 end
