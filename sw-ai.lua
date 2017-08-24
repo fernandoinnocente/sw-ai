@@ -24,7 +24,27 @@ rewardButtonsRegion = Region(250,400,380, 100)
 leftSide = Region(0,0,480,540)
 rightSide = Region(480,0,480,540)
 
--- ==========  main program ===========
+-- ==========  functions ===========
+
+scanPattern = function (pattern, time, region)
+    if not region then region = Region(0,0,960,540) end
+    if not pattern then return end
+    if not time then time = 0 end
+    local counter = -1;
+    local patternFound;
+    while(counter < time)
+    do
+        patternFound = region:exists(pattern)
+        if(patternFound) then break
+        else
+            wait(1)
+            counter = counter + 1
+        end
+    end
+    return patternFound
+end
+
+-- ==========  main loop ===========
 
 while(true)
 do
@@ -45,20 +65,4 @@ do
     click(scanPattern(repeatButton, 3, leftSide))
 end
 
-function scanPattern(pattern, time, region)
-    if not region then region = Region(0,0,960,540) end
-    if not pattern then return end
-    if not time then time = 0 end
-    local counter = -1;
-    local patternFound;
-    while(counter < time)
-    do
-        patternFound = region:exists(pattern)
-        if(patternFound) then break
-        else
-            wait(1)
-            counter = counter + 1
-        end
-    end
-    return patternFound
-end
+
