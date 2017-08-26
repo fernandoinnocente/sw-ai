@@ -15,12 +15,11 @@ startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
 chestCenter = Pattern("box.png")
 repeatButton = Pattern("smallFlash.png")
-sellButton = Pattern("sell.en.png")
-getButton = Pattern("get.en.png")
-okButton = Pattern("okButton.png")
-dialogButton = Pattern("sellButton.png")
+buttonLeft = Pattern("buttonLeft.png")
+buttonRight = Pattern("buttonRight.png")
 
-rewardButtonsRegion = Region(250,400,380, 100)
+rewardButtonsRegionLeft = Region(250,400,190, 100)
+rewardButtonsRegionRight = Region(440,400,190, 100)
 leftSide = Region(0,0,480,540)
 rightSide = Region(480,0,480,540)
 
@@ -52,15 +51,10 @@ do
     click(scanPattern(victoryDiamond, 120))
     wait(1)
     click(rightSide)
-    local ok = scanPattern(okButton, 3, rewardButtonsRegion)
-    if(ok) then
-        click(ok)
+    if mustSellRunes == true then
+        click(scanPattern(buttonLeft, 3, rewardButtonsRegionLeft))
     else
-        if mustSellRunes == true then
-            click(scanPattern(sellButton, 3, rewardButtonsRegion))
-        else
-            click(scanPattern(getButton, 3, rewardButtonsRegion))
-        end
+        click(scanPattern(buttonRight, 3, rewardButtonsRegionRight))
     end
     click(scanPattern(repeatButton, 3, leftSide))
 end
