@@ -13,11 +13,14 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-chestCenter = Pattern("box.png")
 repeatButton = Pattern("smallFlash.png")
 buttonLeft = Pattern("buttonLeft.png")
 buttonRight = Pattern("buttonRight.png")
 
+-- ==========  regions ===========
+
+startButtonRegion = Region(660, 340, 180, 80)
+victoryRegion = Region(645, 245, 50, 50)
 rewardButtonsRegionLeft = Region(250,400,190, 100)
 rewardButtonsRegionRight = Region(440,400,190, 100)
 leftSide = Region(0,0,480,540)
@@ -47,10 +50,11 @@ end
 
 while(true)
 do
-    click(scanPattern(startButton, 5))
-    click(scanPattern(victoryDiamond, 120))
+    click(scanPattern(startButton, 5, startButtonRegion))
+    click(scanPattern(victoryDiamond, 120, victoryRegion))
     wait(1)
     click(rightSide)
+    wait(1)
     if mustSellRunes == true then
         click(scanPattern(buttonLeft, 3, rewardButtonsRegionLeft))
     else
