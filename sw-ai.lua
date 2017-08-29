@@ -12,7 +12,7 @@ dialogShow("Configurações")
 -- ==========  patterns ===========
 
 startButton = Pattern("flash.png")
-victoryDiamond = Pattern("victoryDiamond.png")
+victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
 repeatButton = Pattern("smallFlash.png")
 buttonLeft = Pattern("buttonLeft.png")
 buttonRight = Pattern("buttonRight.png")
@@ -20,7 +20,6 @@ buttonRight = Pattern("buttonRight.png")
 -- ==========  regions ===========
 
 startButtonRegion = Region(660, 340, 180, 80)
-victoryRegion = Region(630, 230, 100, 100)
 rewardButtonsRegionLeft = Region(250,400,190, 100)
 rewardButtonsRegionRight = Region(440,400,190, 100)
 leftSide = Region(0,0,480,540)
@@ -51,7 +50,7 @@ end
 while(true)
 do
     click(scanPattern(startButton, 5, startButtonRegion))
-    click(scanPattern(victoryDiamond, 120, victoryRegion))
+    click(scanPattern(victoryDiamond, 120))
     wait(1)
     click(rightSide)
     wait(1)
