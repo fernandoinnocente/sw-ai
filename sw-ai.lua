@@ -20,8 +20,8 @@ buttonRight = Pattern("buttonRight.png")
 -- ==========  regions ===========
 
 startButtonRegion = Region(660, 340, 180, 80)
-rewardButtonsRegionLeft = Region(250,400,190, 100)
-rewardButtonsRegionRight = Region(440,400,190, 100)
+rewardButtonsRegionLeft = Region(270,370,130, 170)
+rewardButtonsRegionRight = Region(470,370,130, 170)
 leftSide = Region(0,0,480,540)
 rightSide = Region(480,0,480,540)
 
