@@ -55,9 +55,9 @@ do
     click(rightSide)
     wait(1)
     if mustSellRunes == true then
-        click(scanPattern(buttonLeft, 3, rewardButtonsRegionLeft))
+        click(scanPattern(buttonLeft, 3, leftSide))
     else
-        click(scanPattern(buttonRight, 3, rewardButtonsRegionRight))
+        click(scanPattern(buttonRight, 3, rightSide))
     end
     click(scanPattern(repeatButton, 3, leftSide))
 end
