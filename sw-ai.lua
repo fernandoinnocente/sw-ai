@@ -85,11 +85,13 @@ do
     click(scanPattern(startButton, 5, startButtonRegion))
     local victory = isVictory()
     if victory then
-        click(isVictory)
+        click(victory)
         collectReward()
     else
-        click(scanPattern(dontReviveButton, 3, rightSide))
+        click(scanPattern(dontReviveButton, 5, rightSide))
+        wait(2)
         click(leftSide)
+        wait(1)
     end
     click(scanPattern(repeatButton, 3, leftSide))
 end
