@@ -17,7 +17,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-defetedDiamond = Pattern("defeatedDiamond.png")
+defetedDiamond = Pattern("defeatedDiamond.png"):similar(0.8)
 repeatButton = Pattern("smallFlash.png")
 dontReviveButton = Pattern("noButton.png")
 buttonLeft = Pattern("buttonLeft.png")
@@ -83,7 +83,8 @@ while(count < repetitions)
 do
     count = count + 1;
     click(scanPattern(startButton, 5, startButtonRegion))
-    if isVictory() then
+    local victory = isVictory()
+    if victory then
         click(isVictory)
         collectReward()
     else
