@@ -17,8 +17,9 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-defetedDiamond = Pattern("defeatedDiamond.png"):similar(0.6)
-repeatButton = Pattern("smallFlash.png"):similar(0.3)
+defetedDiamond = Pattern("defeatedDiamond.png"):similar(0.8)
+repeatButton = Pattern("smallFlash.png")
+repeatAfterDefeat = Pattern("flashDefeated.png")
 dontReviveButton = Pattern("noButton.png")
 buttonLeft = Pattern("buttonLeft.png")
 buttonRight = Pattern("buttonRight.png")
@@ -69,11 +70,10 @@ end
 collectReward = function()
     wait(1)
     click(rightSide)
-    wait(1)
     if mustSellRunes == true then
-        click(scanPattern(buttonLeft, 3, leftSide))
+        click(scanPattern(buttonLeft, 4, leftSide))
     else
-        click(scanPattern(buttonRight, 3, rightSide))
+        click(scanPattern(buttonRight, 4, rightSide))
     end
 end
 
@@ -87,13 +87,13 @@ do
     if victory then
         click(victory)
         collectReward()
+        click(scanPattern(repeatButton, 3, leftSide))
     else
         click(scanPattern(dontReviveButton, 5, rightSide))
-        wait(2)
-        click(leftSide)
         wait(1)
+        click(leftSide)
+        click(scanPattern(repeatAfterDefeat, 5, leftSide))
     end
-    click(scanPattern(repeatButton, 3, leftSide))
 end
 
 
