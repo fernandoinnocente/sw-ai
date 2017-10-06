@@ -6,7 +6,11 @@ Settings:set("MinSimilarity", 0.45)
 
 dialogInit()
 addCheckBox("mustSellRunes", "Vender as runas:", false)
+newRow()
 addCheckBox("mustRecharge", "Recarregar com cristais:", false)
+newRow()
+addTextView("Número de repetições")
+addEditNumber("repetitions", "999")
 dialogShow("Configurações")
 
 -- ==========  patterns ===========
@@ -46,18 +50,19 @@ scanPattern = function (pattern, time, region)
 end
 
 -- ==========  main loop ===========
-
-while(true)
+count = 0;
+while(count < repetitions)
 do
+    count = count + 1;
     click(scanPattern(startButton, 5, startButtonRegion))
     click(scanPattern(victoryDiamond, 120))
     wait(1)
     click(rightSide)
     wait(1)
     if mustSellRunes == true then
-        click(scanPattern(buttonLeft, 3, rewardButtonsRegionLeft))
+        click(scanPattern(buttonLeft, 3, leftSide))
     else
-        click(scanPattern(buttonRight, 3, rewardButtonsRegionRight))
+        click(scanPattern(buttonRight, 3, rightSide))
     end
     click(scanPattern(repeatButton, 3, leftSide))
 end
