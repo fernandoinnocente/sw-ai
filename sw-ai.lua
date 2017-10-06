@@ -17,7 +17,9 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
+defetedDiamond = Pattern("defeatedDiamond.png")
 repeatButton = Pattern("smallFlash.png")
+dontReviveButton = Pattern("noButton.png")
 buttonLeft = Pattern("buttonLeft.png")
 buttonRight = Pattern("buttonRight.png")
 
@@ -35,18 +37,44 @@ scanPattern = function (pattern, time, region)
     if not region then region = Region(0,0,960,540) end
     if not pattern then return end
     if not time then time = 0 end
-    local counter = -1;
-    local patternFound;
+    local counter = -1
+    local patternFound
+    local pitch = (time > 10 and 5 or 1)
     while(counter < time)
     do
         patternFound = region:exists(pattern)
         if(patternFound) then break
         else
-            wait(1)
-            counter = counter + 1
+            wait(pitch)
+            counter = counter + pitch
         end
     end
     return patternFound
+end
+
+isVictory = function()
+    while(true) do
+        local isVictory = rightSide:exists(victoryDiamond)
+        if isVictory then
+            return isVictory
+        end
+        local isDefeat = leftSide:exists(defetedDiamond)
+        if isDefeat then
+            return false
+        end
+        wait(5)
+    end
+end
+
+collectReward = function()
+    wait(1)
+    click(rightSide)
+    wait(1)
+    if mustSellRunes == true then
+        click(scanPattern(buttonLeft, 3, leftSide))
+    else
+        click(scanPattern(buttonRight, 3, rightSide))
+    end
 end
 
 -- ==========  main loop ===========
@@ -55,14 +83,12 @@ while(count < repetitions)
 do
     count = count + 1;
     click(scanPattern(startButton, 5, startButtonRegion))
-    click(scanPattern(victoryDiamond, 120))
-    wait(1)
-    click(rightSide)
-    wait(1)
-    if mustSellRunes == true then
-        click(scanPattern(buttonLeft, 3, leftSide))
+    if isVictory() then
+        click(isVictory)
+        collectReward()
     else
-        click(scanPattern(buttonRight, 3, rightSide))
+        click(scanPattern(dontReviveButton, 3, rightSide))
+        click(leftSide)
     end
     click(scanPattern(repeatButton, 3, leftSide))
 end
