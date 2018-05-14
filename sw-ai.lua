@@ -85,10 +85,12 @@ do
     click(scanPattern(startButton, 5, startButtonRegion))
     local victory = isVictory()
     if victory then
+        alert("Victory Flow")
         click(victory)
         collectReward()
         click(scanPattern(repeatButton, 3, leftSide))
     else
+        alert("Defeat Flow")
         click(scanPattern(dontReviveButton, 5, rightSide))
         wait(1)
         click(leftSide)
