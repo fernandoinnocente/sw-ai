@@ -1,8 +1,9 @@
 require "math"
 -- ========== Settings ================
 Settings:setCompareDimension(true, 960)
-Settings:setScriptDimension(true, 960)
-Settings:set("MinSimilarity", 0.45)
+Settings:setScriptDimension(true, 1920)
+Settings:set("MinSimilarity", 0.4)
+Settings:setScanInterval(1)
 
 dialogInit()
 addCheckBox("mustSellRunes", "Vender as runas:", false)
@@ -18,21 +19,22 @@ dialogShow("Configurações")
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
 repeatButton = Pattern("smallFlash.png")
-buttonLeft = Pattern("buttonLeft.png")
-buttonRight = Pattern("buttonRight.png")
+sellButton = Pattern("sell.en.png")
+getButton = Pattern("get.en.png")
+okButton = Pattern("ok.en.png")
 
 -- ==========  regions ===========
 
-startButtonRegion = Region(660, 340, 180, 80)
-rewardButtonsRegionLeft = Region(250,400,190, 100)
-rewardButtonsRegionRight = Region(440,400,190, 100)
-leftSide = Region(0,0,480,540)
-rightSide = Region(480,0,480,540)
+fullScreen = Region(0,0,1920,1080)
+replayRegion = Region(580, 540, 300, 300)
+leftSide = Region(0,0,960,1080)
+rightSide = Region(960,0,960,1080)
+okButtonRegion = Region(750, 820, 300, 130)
 
 -- ==========  functions ===========
 
 scanPattern = function (pattern, time, region)
-    if not region then region = Region(0,0,960,540) end
+    if not region then region = fullScreen end
     if not pattern then return end
     if not time then time = 0 end
     local counter = -1;
@@ -54,17 +56,22 @@ count = 0;
 while(count < repetitions)
 do
     count = count + 1;
-    click(scanPattern(startButton, 5, startButtonRegion))
     click(scanPattern(victoryDiamond, 120))
     wait(1)
     click(rightSide)
     wait(1)
-    if mustSellRunes == true then
-        click(scanPattern(buttonLeft, 3, leftSide))
+    local okButtonFound = fullScreen:exists(okButton)
+    if(okButtonFound) then 
+      click(scanPattern(okButton, 3))
+    elseif mustSellRunes == true then
+      click(scanPattern(sellButton, 3, leftSide))
     else
-        click(scanPattern(buttonRight, 3, rightSide))
+      click(scanPattern(getButton, 3, rightSide))
     end
-    click(scanPattern(repeatButton, 3, leftSide))
+    replayRegion:highlight()
+    wait(1)
+    click(scanPattern(repeatButton, 3, replayRegion))
+    replayRegion:highlight()
 end
 
 
