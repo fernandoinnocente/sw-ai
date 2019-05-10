@@ -23,7 +23,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-riftResult = Pattern("riftResult.png"):similar(0.55)
+riftResult = Pattern("riftResult.png"):similar(0.6)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
@@ -64,7 +64,7 @@ repeatProcedure = function(victoryPattern, region)
   while(count < repetitions)
   do
       count = count + 1;
-      click(scanPattern(victoryPattern, 180, region))
+      click(scanPattern(victoryPattern, 600, region))
       wait(1)
       click(rightSide)
       wait(1)
