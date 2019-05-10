@@ -32,7 +32,7 @@ okButton = Pattern("ok.en.png")
 -- ==========  regions ===========
 
 fullScreen = Region(0,0,1920,1080)
-diamondRegion = Region(1440,500,100,100)
+diamondRegion = Region(1540,500,200,200)
 riftResultRegion = Region(0,0,960,1080)
 replayRegion = Region(580, 540, 300, 300)
 leftSide = Region(0,0,960,1080)
