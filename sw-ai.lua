@@ -89,15 +89,16 @@ riftsRoutine = function()
       count = count + 1;
       local victoryConditionfound = scanPattern(riftResult, 600, riftResultRegion)
       if victoryConditionfound then
-        wait(3)
+        wait(2)
         click(victoryConditionfound)
       else 
         break
       end
+      wait(2)
       click(rightSide)
-      wait(1)
+      wait(2)
       click(scanPattern(okButtonRifts, 3, okButtonRegion))
-      wait(1)
+      wait(2)
       click(scanPattern(repeatButton, 3, replayRegion))
   end
 end
