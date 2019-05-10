@@ -23,7 +23,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-riftResult = Pattern("riftResult.png"):similar(0.8)
+riftResult = Pattern("riftResult.png"):similar(0.7)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
