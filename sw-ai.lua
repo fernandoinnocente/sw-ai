@@ -1,6 +1,6 @@
 require "math"
 -- ========== Settings ================
-Settings:setCompareDimension(true, 1920)
+Settings:setCompareDimension(true, 960)
 Settings:setScriptDimension(true, 1920)
 Settings:set("MinSimilarity", 0.4)
 Settings:setScanInterval(1)
@@ -59,12 +59,12 @@ scanPattern = function (pattern, time, region)
     return patternFound
 end
 
-repeatProcedure = function(victoryPattern, region)
+repeatProcedure = function(victoryPattern, regionToSearch)
   count = 0;
   while(count < repetitions)
   do
       count = count + 1;
-      click(scanPattern(victoryPattern, 600, region))
+      click(scanPattern(victoryPattern, 600, regionToSearch))
       wait(1)
       click(rightSide)
       wait(1)
@@ -84,7 +84,7 @@ end
 -- ==========  main program ===========
 
 if f_number == 1 then
-  repeatProcedure(victoryDiamond, rightSide)
+  repeatProcedure(victoryDiamond, diamondRegion)
 else
-  repeatProcedure(riftResult, leftSide)
+  repeatProcedure(riftResult, riftResultRegion)
 end
