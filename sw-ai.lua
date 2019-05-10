@@ -68,7 +68,7 @@ repeatProcedure = function(victoryPattern, region)
       wait(1)
       click(rightSide)
       wait(1)
-      local okButtonFound = okButtonRegion:exists(okButton)
+      local okButtonFound = fullScreen:exists(okButton)
       if okButtonFound then 
         click(scanPattern(okButton, 3))
       elseif mustSellRunes == true then
