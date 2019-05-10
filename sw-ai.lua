@@ -38,7 +38,7 @@ replayRegion = Region(580, 540, 300, 200)
 leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
 okButtonRegion = Region(900, 850, 300, 230)
-getButtonRegion = Region(1200, 850, 300, 230)
+getButtonRegion = Region(1050, 850, 300, 230)
 
 -- ==========  functions ===========
 
