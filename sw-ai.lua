@@ -33,7 +33,7 @@ okButton = Pattern("ok.en.png")
 
 fullScreen = Region(0,0,1920,1080)
 diamondRegion = Region(1540,500,200,200)
-riftResultRegion = Region(0,0,960,1080)
+riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 300)
 leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
@@ -82,9 +82,9 @@ repeatProcedure = function(victoryPattern, region)
 end
 
 -- ==========  main program ===========
-okButtonRegion:highlight()
+riftResultRegion:highlight()
 wait(100)
-okButtonRegion:highlight()
+riftResultRegion:highlight()
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
 --else
