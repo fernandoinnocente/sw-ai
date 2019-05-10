@@ -38,6 +38,7 @@ replayRegion = Region(580, 540, 300, 200)
 leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
 okButtonRegion = Region(900, 850, 300, 230)
+getButtonRegion = Region(900, 850, 300, 230)
 
 -- ==========  functions ===========
 
@@ -74,7 +75,7 @@ repeatProcedure = function(victoryPattern, regionToSearch)
       elseif mustSellRunes == true then
         click(scanPattern(sellButton, 3, leftSide))
       else
-        click(scanPattern(getButton, 3, rightSide))
+        click(scanPattern(getButton, 3, getButtonRegion))
       end
       wait(1)
       click(scanPattern(repeatButton, 3, replayRegion))
@@ -83,9 +84,9 @@ end
 
 -- ==========  main program ===========
 
-rightSide:highlight()
+getButtonRegion:highlight()
 wait(100)
-rightSide:highlight()
+getButtonRegion:highlight()
 
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
