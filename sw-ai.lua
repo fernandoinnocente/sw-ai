@@ -82,11 +82,9 @@ repeatProcedure = function(victoryPattern, region)
 end
 
 -- ==========  main program ===========
-riftResultRegion:highlight()
-click(scanPattern(riftResult, 2, riftResultRegion))
-riftResultRegion:highlight()
---if f_number == 1 then
-  --repeatProcedure(victoryDiamond, diamondRegion)
---else
-  --repeatProcedure(riftResult, riftResultRegion)
---end
+
+if f_number == 1 then
+  repeatProcedure(victoryDiamond, diamondRegion)
+else
+  repeatProcedure(riftResult, riftResultRegion)
+end
