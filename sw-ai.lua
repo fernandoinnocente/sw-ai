@@ -70,7 +70,7 @@ repeatProcedure = function(victoryPattern, region)
       wait(1)
       local okButtonFound = okButtonRegion:exists(okButton)
       if okButtonFound then 
-        click(scanPattern(okButton, 3))
+        click(scanPattern(okButton, 3, okButtonRegion))
       elseif mustSellRunes == true then
         click(scanPattern(sellButton, 3, leftSide))
       else
