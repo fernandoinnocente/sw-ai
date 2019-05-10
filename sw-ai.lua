@@ -23,12 +23,12 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-riftResult = Pattern("riftResult.png"):similar(0.6)
+riftResult = Pattern("riftResult.png"):similar(0.8)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okButton = Pattern("ok.en.png")
-
+okButtonScenario = Pattern("ok.en.png")
+okButtonRifts = Pattern("okRifts.png")
 -- ==========  regions ===========
 
 fullScreen = Region(0,0,1920,1080)
@@ -60,18 +60,18 @@ scanPattern = function (pattern, time, region)
     return patternFound
 end
 
-repeatProcedure = function(victoryPattern, regionToSearch)
+scenarioRoutine = function()
   count = 0;
   while(count < repetitions)
   do
       count = count + 1;
-      click(scanPattern(victoryPattern, 600, regionToSearch))
+      click(scanPattern(victoryDiamond, 600, diamondRegion))
       wait(1)
       click(rightSide)
       wait(1)
-      local okButtonFound = okButtonRegion:exists(okButton)
+      local okButtonFound = okButtonRegion:exists(okButtonScenario)
       if okButtonFound then 
-        click(scanPattern(okButton, 3, okButtonRegion))
+        click(scanPattern(okButtonScenario, 3, okButtonRegion))
       elseif mustSellRunes == true then
         click(scanPattern(sellButton, 3, leftSide))
       else
@@ -82,10 +82,25 @@ repeatProcedure = function(victoryPattern, regionToSearch)
   end
 end
 
+riftsRoutine = function()
+  count = 0;
+  while(count < repetitions)
+  do
+      count = count + 1;
+      click(scanPattern(riftResult, 600, riftResultRegion))
+      wait(1)
+      click(rightSide)
+      wait(1)
+      click(scanPattern(okButtonRifts, 3, okButtonRegion))
+      wait(1)
+      click(scanPattern(repeatButton, 3, replayRegion))
+  end
+end
+
 -- ==========  main program ===========
-click(scanPattern(okButton, 3, okButtonRegion))
---if f_number == 1 then
-  --repeatProcedure(victoryDiamond, diamondRegion)
---else
-  --repeatProcedure(riftResult, riftResultRegion)
---end
+
+if f_number == 1 then
+  scenarioRoutine()
+else
+  riftsRoutine()
+end
