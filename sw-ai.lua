@@ -23,7 +23,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-riftResult = Pattern("riftResult.png"):similar(0.8)
+riftResult = Pattern("riftResult.png"):similar(0.7)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
@@ -98,9 +98,10 @@ riftsRoutine = function()
 end
 
 -- ==========  main program ===========
-
-if f_number == 1 then
-  scenarioRoutine()
-else
-  riftsRoutine()
-end
+riftResultRegion:highlight()
+click(scanPattern(riftResult, 2, riftResultRegion))
+--if f_number == 1 then
+  --scenarioRoutine()
+--else
+  --riftsRoutine()
+--end
