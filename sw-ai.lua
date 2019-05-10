@@ -83,8 +83,12 @@ end
 
 -- ==========  main program ===========
 
-if f_number == 1 then
-  repeatProcedure(victoryDiamond, diamondRegion)
-else
-  repeatProcedure(riftResult, riftResultRegion)
-end
+rightSide:highlight()
+wait(100)
+rightSide:highlight()
+
+--if f_number == 1 then
+  --repeatProcedure(victoryDiamond, diamondRegion)
+--else
+  --repeatProcedure(riftResult, riftResultRegion)
+--end
