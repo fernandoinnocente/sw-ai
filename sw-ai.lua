@@ -84,9 +84,9 @@ repeatProcedure = function(victoryPattern, region)
 end
 
 -- ==========  main program ===========
-diamondRegion:highlight()
+okButtonRegion:highlight()
 wait(100)
-diamondRegion:highlight()
+okButtonRegion:highlight()
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
 --else
