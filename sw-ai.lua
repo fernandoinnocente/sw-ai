@@ -27,7 +27,7 @@ riftResult = Pattern("riftResult.png"):similar(0.6)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okButton = Pattern("ok.en.png"):similar(0.3)
+okButton = Pattern("ok.en.png")
 
 -- ==========  regions ===========
 
