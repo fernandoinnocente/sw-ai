@@ -83,8 +83,10 @@ end
 
 -- ==========  main program ===========
 
-if f_number == 1 then
-  repeatProcedure(victoryDiamond, diamondRegion)
-else
-  repeatProcedure(riftResult, riftResultRegion)
-end
+scanPattern(riftResult, 2, riftResultRegion)
+
+--if f_number == 1 then
+  --repeatProcedure(victoryDiamond, diamondRegion)
+--else
+  --repeatProcedure(riftResult, riftResultRegion)
+--end
