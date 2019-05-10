@@ -84,9 +84,7 @@ end
 
 -- ==========  main program ===========
 
-getButtonRegion:highlight()
-wait(100)
-getButtonRegion:highlight()
+click(scanPattern(getButton, 3, getButtonRegion))
 
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
