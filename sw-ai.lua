@@ -23,7 +23,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
-riftResult = Pattern("riftResult.png")
+riftResult = Pattern("riftResult.png"):similar(0.3)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
@@ -83,7 +83,7 @@ end
 
 -- ==========  main program ===========
 
-scanPattern(riftResult, 2, riftResultRegion)
+click(scanPattern(riftResult, 2, riftResultRegion))
 
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
