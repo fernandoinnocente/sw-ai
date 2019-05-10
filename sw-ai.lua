@@ -82,9 +82,9 @@ repeatProcedure = function(victoryPattern, region)
 end
 
 -- ==========  main program ===========
-riftResultRegion:highlight()
+replayRegion:highlight()
 wait(100)
-riftResultRegion:highlight()
+replayRegion:highlight()
 --if f_number == 1 then
   --repeatProcedure(victoryDiamond, diamondRegion)
 --else
