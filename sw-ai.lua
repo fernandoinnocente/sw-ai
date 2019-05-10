@@ -1,6 +1,6 @@
 require "math"
 -- ========== Settings ================
-Settings:setCompareDimension(true, 960)
+Settings:setCompareDimension(true, 1920)
 Settings:setScriptDimension(true, 1920)
 Settings:set("MinSimilarity", 0.4)
 Settings:setScanInterval(1)
