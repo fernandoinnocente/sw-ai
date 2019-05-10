@@ -37,7 +37,7 @@ riftResultRegion = Region(0,0,960,1080)
 replayRegion = Region(580, 540, 300, 300)
 leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
-okButtonRegion = Region(900, 950, 300, 130)
+okButtonRegion = Region(900, 850, 300, 230)
 
 -- ==========  functions ===========
 
@@ -68,7 +68,7 @@ repeatProcedure = function(victoryPattern, region)
       wait(1)
       click(rightSide)
       wait(1)
-      local okButtonFound = fullScreen:exists(okButton)
+      local okButtonFound = okButtonRegion:exists(okButton)
       if okButtonFound then 
         click(scanPattern(okButton, 3))
       elseif mustSellRunes == true then
@@ -76,10 +76,8 @@ repeatProcedure = function(victoryPattern, region)
       else
         click(scanPattern(getButton, 3, rightSide))
       end
-      replayRegion:highlight()
       wait(1)
       click(scanPattern(repeatButton, 3, replayRegion))
-      replayRegion:highlight()
   end
 end
 
