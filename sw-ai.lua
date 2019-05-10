@@ -37,7 +37,7 @@ riftResultRegion = Region(0,0,960,1080)
 replayRegion = Region(580, 540, 300, 300)
 leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
-okButtonRegion = Region(750, 820, 300, 130)
+okButtonRegion = Region(850, 920, 300, 130)
 
 -- ==========  functions ===========
 
