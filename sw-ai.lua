@@ -87,8 +87,13 @@ riftsRoutine = function()
   while(count < repetitions)
   do
       count = count + 1;
-      click(scanPattern(riftResult, 600, riftResultRegion))
-      wait(1)
+      local victoryConditionfound = scanPattern(riftResult, 600, riftResultRegion)
+      if victoryConditionfound then
+        wait(3)
+        click(victoryConditionfound)
+      else 
+        break
+      end
       click(rightSide)
       wait(1)
       click(scanPattern(okButtonRifts, 3, okButtonRegion))
@@ -98,10 +103,9 @@ riftsRoutine = function()
 end
 
 -- ==========  main program ===========
-riftResultRegion:highlight()
-click(scanPattern(riftResult, 2, riftResultRegion))
---if f_number == 1 then
-  --scenarioRoutine()
---else
-  --riftsRoutine()
---end
+
+if f_number == 1 then
+  scenarioRoutine()
+else
+  riftsRoutine()
+end
