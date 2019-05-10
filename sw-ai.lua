@@ -27,7 +27,7 @@ riftResult = Pattern("riftResult.png"):similar(0.3)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
 getButton = Pattern("get.en.png")
-okButton = Pattern("ok.en.png")
+okButton = Pattern("ok.en.png"):similar(0.3)
 
 -- ==========  regions ===========
 
@@ -68,7 +68,7 @@ repeatProcedure = function(victoryPattern, region)
       wait(1)
       click(rightSide)
       wait(1)
-      local okButtonFound = fullScreen:exists(okButton)
+      local okButtonFound = okButtonRegion:exists(okButton)
       if okButtonFound then 
         click(scanPattern(okButton, 3))
       elseif mustSellRunes == true then
