@@ -83,9 +83,9 @@ repeatProcedure = function(victoryPattern, regionToSearch)
 end
 
 -- ==========  main program ===========
-
-if f_number == 1 then
-  repeatProcedure(victoryDiamond, diamondRegion)
-else
-  repeatProcedure(riftResult, riftResultRegion)
-end
+click(scanPattern(okButton, 3, okButtonRegion))
+--if f_number == 1 then
+  --repeatProcedure(victoryDiamond, diamondRegion)
+--else
+  --repeatProcedure(riftResult, riftResultRegion)
+--end
