@@ -84,10 +84,8 @@ end
 
 -- ==========  main program ===========
 
-click(scanPattern(getButton, 3, getButtonRegion))
-
---if f_number == 1 then
-  --repeatProcedure(victoryDiamond, diamondRegion)
---else
-  --repeatProcedure(riftResult, riftResultRegion)
---end
+if f_number == 1 then
+  repeatProcedure(victoryDiamond, diamondRegion)
+else
+  repeatProcedure(riftResult, riftResultRegion)
+end
