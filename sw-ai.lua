@@ -84,7 +84,7 @@ end
 -- ==========  main program ===========
 
 if f_number == 1 then
-  repeatProcedure(victoryDiamond, diamondRegion)
+  repeatProcedure(victoryDiamond, rightSide)
 else
-  repeatProcedure(riftResult, riftResultRegion)
+  repeatProcedure(riftResult, leftSide)
 end
