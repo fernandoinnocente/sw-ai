@@ -1,12 +1,14 @@
 require "math"
 -- ========== Settings ================
-Settings:setCompareDimension(true, 1920)
-Settings:setScriptDimension(true, 1920)
+Settings:setCompareDimension(true, 2340)
+Settings:setScriptDimension(true, 2340)
 Settings:set("MinSimilarity", 0.4)
 Settings:setScanInterval(1)
 
 dialogInit()
 addCheckBox("mustSellRunes", "Vender as runas:", false)
+newRow()
+addCheckBox("debugMode", "Modo debug:", false)
 newRow()
 addCheckBox("mustRecharge", "Recarregar com cristais:", false)
 newRow()
@@ -39,7 +41,7 @@ leftSide = Region(0,0,960,1080)
 rightSide = Region(960,0,960,1080)
 okButtonRegion = Region(900, 850, 300, 230)
 getButtonRegion = Region(1050, 850, 300, 230)
-
+ 
 -- ==========  functions ===========
 
 scanPattern = function (pattern, time, region)
@@ -65,19 +67,26 @@ scenarioRoutine = function()
   while(count < repetitions)
   do
       count = count + 1;
+      highlightRegion(diamondRegion)
       click(scanPattern(victoryDiamond, 600, diamondRegion))
       wait(1)
+      highlightRegion(rightSide)
       click(rightSide)
       wait(1)
+      highlightRegion(okButtonRegion)
       local okButtonFound = okButtonRegion:exists(okButtonScenario)
-      if okButtonFound then 
+      if okButtonFound then
+        highlightRegion(okButtonRegion) 
         click(scanPattern(okButtonScenario, 3, okButtonRegion))
       elseif mustSellRunes == true then
+        highlightRegion(leftSide)
         click(scanPattern(sellButton, 3, leftSide))
       else
+        highlightRegion(getButtonRegion)
         click(scanPattern(getButton, 3, getButtonRegion))
       end
       wait(1)
+      highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
   end
 end
@@ -87,15 +96,29 @@ riftsRoutine = function()
   while(count < repetitions)
   do
       count = count + 1;
+      highlightRegion(riftResultRegion)
       local victoryConditionfound = scanPattern(riftResult, 600, riftResultRegion)
       wait(5)
       click(victoryConditionfound)
       wait(2)
+      highlightRegion(rightSide)
       click(rightSide)
       wait(2)
+      highlightRegion(okButtonRegion)
       click(scanPattern(okButtonRifts, 3, okButtonRegion))
       wait(2)
+      highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
+  end
+end
+
+highlightRegion = function(region)
+  if currentHighlightedRegion then
+    currentHighlightedRegion:highlightOff()
+  end
+  if debugMode then
+    region:highlight()
+    currentHighlightedRegion = region
   end
 end
 
