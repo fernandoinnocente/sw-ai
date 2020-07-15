@@ -33,14 +33,14 @@ okButtonScenario = Pattern("ok.en.png")
 okButtonRifts = Pattern("okRifts.png")
 -- ==========  regions ===========
 
-fullScreen = Region(0,0,1920,1080)
-diamondRegion = Region(1540,500,200,200)
+fullScreen = Region(0,0,2340,1080)
+diamondRegion = Region(2000,500,200,200)
 riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 200)
-leftSide = Region(0,0,960,1080)
-rightSide = Region(960,0,960,1080)
-okButtonRegion = Region(900, 850, 300, 230)
-getButtonRegion = Region(1050, 850, 300, 230)
+leftSide = Region(0,0,1170,1080)
+rightSide = Region(1170,0,1170,1080)
+okButtonRegion = Region(1150, 850, 300, 230)
+getButtonRegion = Region(1400, 850, 300, 230)
  
 -- ==========  functions ===========
 
@@ -69,7 +69,7 @@ scenarioRoutine = function()
       count = count + 1;
       highlightRegion(diamondRegion)
       click(scanPattern(victoryDiamond, 600, diamondRegion))
-      wait(1)
+      wait(2)
       highlightRegion(rightSide)
       click(rightSide)
       wait(1)
