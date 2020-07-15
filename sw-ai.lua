@@ -6,11 +6,7 @@ Settings:set("MinSimilarity", 0.4)
 Settings:setScanInterval(1)
 
 dialogInit()
-addCheckBox("mustSellRunes", "Vender as runas:", false)
-newRow()
 addCheckBox("debugMode", "Modo debug:", false)
-newRow()
-addCheckBox("mustRecharge", "Recarregar com cristais:", false)
 newRow()
 addTextView("Número de repetições")
 addEditNumber("repetitions", "10")
@@ -39,8 +35,7 @@ riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 200)
 leftSide = Region(0,0,1170,1080)
 rightSide = Region(1170,0,1170,1080)
-okButtonRegion = Region(1150, 850, 300, 230)
-getButtonRegion = Region(1400, 850, 300, 230)
+okButtonRegion = Region(1150, 850, 800, 230)
  
 -- ==========  functions ===========
 
@@ -69,22 +64,12 @@ scenarioRoutine = function()
       count = count + 1;
       highlightRegion(diamondRegion)
       click(scanPattern(victoryDiamond, 600, diamondRegion))
-      wait(2)
+      wait(3)
       highlightRegion(rightSide)
       click(rightSide)
       wait(1)
       highlightRegion(okButtonRegion)
-      local okButtonFound = okButtonRegion:exists(okButtonScenario)
-      if okButtonFound then
-        highlightRegion(okButtonRegion) 
-        click(scanPattern(okButtonScenario, 3, okButtonRegion))
-      elseif mustSellRunes == true then
-        highlightRegion(leftSide)
-        click(scanPattern(sellButton, 3, leftSide))
-      else
-        highlightRegion(getButtonRegion)
-        click(scanPattern(okButtonScenario, 3, getButtonRegion))
-      end
+      click(scanPattern(okButtonScenario, 3, okButtonRegion))
       wait(1)
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
