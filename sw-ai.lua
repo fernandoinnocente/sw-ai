@@ -83,7 +83,7 @@ scenarioRoutine = function()
         click(scanPattern(sellButton, 3, leftSide))
       else
         highlightRegion(getButtonRegion)
-        click(scanPattern(getButton, 3, getButtonRegion))
+        click(scanPattern(okButtonScenario, 3, getButtonRegion))
       end
       wait(1)
       highlightRegion(replayRegion)
