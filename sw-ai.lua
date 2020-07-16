@@ -105,7 +105,7 @@ toaRoutine = function()
   do
       count = count + 1;
       highlightRegion(startRegion)
-      click(startRegion))
+      click(startRegion)
       highlightRegion(diamondRegion)
       click(scanPattern(victoryDiamond, 600, diamondRegion))
       wait(3)
@@ -117,7 +117,7 @@ toaRoutine = function()
       wait(1)
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
-      wait(3)
+      wait(1)
   end
 end
 
