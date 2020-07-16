@@ -31,7 +31,7 @@ okButtonRifts = Pattern("okRifts.png")
 -- ==========  regions ===========
 
 fullScreen = Region(0,0,2340,1080)
-startRegion = Region(2100, 700, 200, 200)
+startRegion = Region(2100, 800, 150, 150)
 diamondRegion = Region(2000,500,200,200)
 riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 200)
@@ -105,7 +105,7 @@ toaRoutine = function()
   do
       count = count + 1;
       highlightRegion(startRegion)
-      click(scanPattern(startButton, 5, startRegion))
+      click(startRegion))
       highlightRegion(diamondRegion)
       click(scanPattern(victoryDiamond, 600, diamondRegion))
       wait(3)
@@ -117,6 +117,7 @@ toaRoutine = function()
       wait(1)
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
+      wait(3)
   end
 end
 
