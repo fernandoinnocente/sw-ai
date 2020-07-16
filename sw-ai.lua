@@ -15,6 +15,7 @@ addTextView("Tipo de cenário")
 addRadioGroup("f_number", 1)
 addRadioButton("Dungeons / Cenários", 1)
 addRadioButton("Rift Beasts", 2)
+addRadioButton("TOA", 3)
 dialogShow("Configurações")
 
 -- ==========  patterns ===========
@@ -132,6 +133,8 @@ end
 
 if f_number == 1 then
   scenarioRoutine()
-else
+elseif f_number == 2 then
   riftsRoutine()
+elseif f_number == 3 then
+  toaRoutine()
 end
