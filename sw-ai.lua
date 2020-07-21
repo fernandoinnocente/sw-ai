@@ -61,18 +61,23 @@ end
 
 scenarioRoutine = function()
   count = 0;
+  highlightRegion(startRegion)
+  click(startRegion)
   while(count < repetitions)
   do
       count = count + 1;
       highlightRegion(diamondRegion)
-      click(scanPattern(victoryDiamond, 600, diamondRegion))
-      wait(3)
+      local victoryConditionFound = scanPattern(victoryDiamond, 600, diamondRegion)
+      wait(5)
+      highlightRegion(victoryConditionFound)
+      click(victoryConditionFound)
+      wait(2)
       highlightRegion(rightSide)
       click(rightSide)
-      wait(1)
+      wait(2)
       highlightRegion(okButtonRegion)
       click(scanPattern(okButtonScenario, 3, okButtonRegion))
-      wait(1)
+      wait(2)
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
   end
