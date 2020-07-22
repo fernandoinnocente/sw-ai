@@ -16,6 +16,7 @@ addRadioGroup("f_number", 1)
 addRadioButton("Dungeons / Cenários", 1)
 addRadioButton("Rift Beasts", 2)
 addRadioButton("TOA", 3)
+addRadioButton("Dimensional Rift", 4)
 dialogShow("Configurações")
 
 -- ==========  patterns ===========
@@ -33,6 +34,7 @@ okButtonRifts = Pattern("okRifts.png")
 fullScreen = Region(0,0,2340,1080)
 startRegion = Region(2100, 800, 150, 150)
 diamondRegion = Region(2000,500,200,200)
+diamondDimensionalRegion = Region(1100,500,200,200)
 riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 200)
 leftSide = Region(0,0,1170,1080)
@@ -127,6 +129,30 @@ toaRoutine = function()
   end
 end
 
+dimensionalRoutine = function()
+  count = 0;
+  highlightRegion(startRegion)
+  click(startRegion)
+  while(count < repetitions)
+  do
+      count = count + 1;
+      highlightRegion(diamondDimensionalRegion)
+      local victoryConditionFound = scanPattern(victoryDiamond, 600, diamondDimensionalRegion)
+      wait(5)
+      highlightRegion(victoryConditionFound)
+      click(victoryConditionFound)
+      wait(2)
+      highlightRegion(rightSide)
+      click(rightSide)
+      wait(2)
+      highlightRegion(okButtonRegion)
+      click(scanPattern(okButtonScenario, 3, okButtonRegion))
+      wait(2)
+      highlightRegion(replayRegion)
+      click(scanPattern(repeatButton, 3, replayRegion))
+  end
+end
+
 highlightRegion = function(region)
   if currentHighlightedRegion then
     currentHighlightedRegion:highlightOff()
@@ -145,4 +171,6 @@ elseif f_number == 2 then
   riftsRoutine()
 elseif f_number == 3 then
   toaRoutine()
+elseif f_number == 4 then
+  dimensionalRoutine()
 end
