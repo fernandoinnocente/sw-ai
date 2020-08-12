@@ -64,30 +64,31 @@ scanPattern = function (pattern, time, region)
 end
 
 scenarioRoutine = function()
-  count = 0;
-  highlightRegion(startRegion)
-  click(startRegion)
-  while(count < repetitions)
-  do
-	count = count + 1;
-    local cycleCount = 0;
-    while(cycleCount < 100)
-    do
-      cycleCount = cycleCount + 1;
-      highlightRegion(victoryDiamondRegion)
-      local victoryConditionFound = scanPattern(victoryDiamond, 3, victoryDiamondRegion)
-      if(victoryConditionFound) then 
-        collectScenarioRewards()
-        break
-      else 
-        highlightRegion(defeatedDiamondRegion)
-        local defeatConditionFound = scanPattern(defeatedDiamond, 3, defeatedDiamondRegion)
-        if(defeatConditionFound) then
-          retryFromDefeat()
-          break
-        end
-      end
-  end
+	count = 0;
+	highlightRegion(startRegion)
+	click(startRegion)
+	while(count < repetitions)
+	do
+		count = count + 1;
+		local cycleCount = 0;
+		while(cycleCount < 100)
+		do
+			cycleCount = cycleCount + 1;
+			highlightRegion(victoryDiamondRegion)
+			local victoryConditionFound = scanPattern(victoryDiamond, 3, victoryDiamondRegion)
+			if(victoryConditionFound) then 
+				collectScenarioRewards()
+				break
+			else 
+				highlightRegion(defeatedDiamondRegion)
+				local defeatConditionFound = scanPattern(defeatedDiamond, 3, defeatedDiamondRegion)
+				if(defeatConditionFound) then
+					retryFromDefeat()
+					break
+				end
+			end
+		end
+	end
 end
 
 collectScenarioRewards = function()
