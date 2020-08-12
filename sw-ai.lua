@@ -23,6 +23,7 @@ dialogShow("Configurações")
 
 startButton = Pattern("flash.png")
 victoryDiamond = Pattern("victoryDiamond.png"):similar(0.8)
+defeatedDiamond = Pattern("defeatedDiamond.png"):similar(0.8)
 riftResult = Pattern("riftResult.png"):similar(0.6)
 repeatButton = Pattern("smallFlash.png")
 sellButton = Pattern("sell.en.png")
@@ -33,7 +34,8 @@ okButtonRifts = Pattern("okRifts.png")
 
 fullScreen = Region(0,0,2340,1080)
 startRegion = Region(2100, 800, 150, 150)
-diamondRegion = Region(2000,500,200,200)
+victoryDiamondRegion = Region(2000,500,200,200)
+defeatedDiamondRegion = Region(1300,700,200,200)
 diamondDimensionalRegion = Region(1500,500,200,200)
 riftResultRegion = Region(100,500,300,100)
 replayRegion = Region(580, 540, 300, 200)
@@ -67,22 +69,49 @@ scenarioRoutine = function()
   click(startRegion)
   while(count < repetitions)
   do
-      count = count + 1;
-      highlightRegion(diamondRegion)
-      local victoryConditionFound = scanPattern(victoryDiamond, 600, diamondRegion)
-      wait(5)
-      highlightRegion(victoryConditionFound)
-      click(victoryConditionFound)
-      wait(2)
-      highlightRegion(rightSide)
-      click(rightSide)
-      wait(2)
-      highlightRegion(okButtonRegion)
-      click(scanPattern(okButtonScenario, 3, okButtonRegion))
-      wait(2)
-      highlightRegion(replayRegion)
-      click(scanPattern(repeatButton, 3, replayRegion))
+	count = count + 1;
+    local cycleCount = 0;
+    while(cycleCount < 100)
+    do
+      cycleCount = cycleCount + 1;
+      highlightRegion(victoryDiamondRegion)
+      local victoryConditionFound = scanPattern(victoryDiamond, 3, victoryDiamondRegion)
+      if(victoryConditionFound) then 
+        collectScenarioRewards()
+        break
+      else 
+        highlightRegion(defeatedDiamondRegion)
+        local defeatConditionFound = scanPattern(defeatedDiamond, 3, defeatedDiamondRegion)
+        if(defeatConditionFound) then
+          retryFromDefeat()
+          break
+        end
+      end
   end
+end
+
+collectScenarioRewards = function()
+  wait(5)
+  click(rightSide)
+  wait(2)
+  click(rightSide)
+  wait(2)
+  highlightRegion(okButtonRegion)
+  click(scanPattern(okButtonScenario, 3, okButtonRegion))
+  wait(2)
+  highlightRegion(replayRegion)
+  click(scanPattern(repeatButton, 3, replayRegion))
+end
+
+retryFromDefeat = function()
+	wait(2)
+  click(rightSide)
+  wait(2)
+  highlightRegion(replayRegion)
+  click(scanPattern(repeatButton, 3, replayRegion))
+  wait(2)
+  highlightRegion(startRegion)
+  click(startRegion)
 end
 
 riftsRoutine = function()
