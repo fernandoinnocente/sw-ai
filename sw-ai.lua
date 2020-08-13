@@ -66,23 +66,34 @@ end
 
 scenarioRoutine = function()
 	count = 0;
-	highlightRegion(startRegion)
-	click(startRegion)
+	startFromBattleScreen = true;
+	victory = 0
+	defeat = 0
 	while(count < repetitions)
 	do
+		
+		if(startFromBattleScreen) then
+			highlightRegion(startRegion)
+			click(startRegion)
+		else
+			highlightRegion(replayRegion)
+			click(scanPattern(repeatButton, 3, replayRegion))
+		end
+
 		count = count + 1;
 		local cycleCount = 0;
+
 		while(cycleCount < 100)
 		do
 			cycleCount = cycleCount + 1;
 			highlightRegion(victoryDiamondRegion)
-			local victoryConditionFound = scanPattern(victoryDiamond, 3, victoryDiamondRegion)
+			local victoryConditionFound = scanPattern(victoryDiamond, 2, victoryDiamondRegion)
 			if(victoryConditionFound) then 
 				collectScenarioRewards()
 				break
 			else 
 				highlightRegion(defeatedDiamondRegion)
-				local defeatConditionFound = scanPattern(defeatedDiamond, 3, defeatedDiamondRegion)
+				local defeatConditionFound = scanPattern(defeatedDiamond, 2, defeatedDiamondRegion)
 				if(defeatConditionFound) then
 					retryFromDefeat()
 					break
@@ -101,8 +112,8 @@ collectScenarioRewards = function()
 	highlightRegion(okButtonRegion)
 	click(scanPattern(okButtonScenario, 3, okButtonRegion))
 	wait(2)
-	highlightRegion(replayRegion)
-	click(scanPattern(repeatButton, 3, replayRegion))
+	startFromBattleScreen = false
+	victory = victory + 1
 end
 
 retryFromDefeat = function()
@@ -115,8 +126,8 @@ retryFromDefeat = function()
 	wait(2)
 	click(scanPattern(repeatButton, 3, replayRegion))
 	wait(2)
-	highlightRegion(startRegion)
-	click(startRegion)
+	startFromBattleScreen = true
+	defeat = defeat + 1
 end
 
 riftsRoutine = function()
@@ -197,10 +208,19 @@ highlightRegion = function(region)
   end
 end
 
+showReport = function()
+	print ("Resultado da execução: ")
+	print ("Total de tentativas: "..repetitions)
+	print ("Total de vitorias: "..victory)
+	print ("Total de derrotas: "..defeat)
+	print ("Eficiência: "..victory / repetitions)
+end
+
 -- ==========  main program ===========
 
 if f_number == 1 then
   scenarioRoutine()
+  showReport()
 elseif f_number == 2 then
   riftsRoutine()
 elseif f_number == 3 then
