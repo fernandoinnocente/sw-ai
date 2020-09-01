@@ -7,6 +7,7 @@ Settings:setScanInterval(1)
 
 dialogInit()
 addCheckBox("debugMode", "Modo debug:", false)
+addCheckBox("additionalReward", "Verificar Reward adicional:", false)
 newRow()
 addTextView("Número de repetições")
 addEditNumber("repetitions", "10")
@@ -43,6 +44,7 @@ leftSide = Region(0,0,1170,1080)
 rightSide = Region(1170,0,1170,1080)
 okButtonRegion = Region(1150, 850, 800, 230)
 noButtonRegion = Region(1600, 700, 100, 100)
+okAdditionalReward = Region(1150, 800, 250, 200)
  
 -- ==========  functions ===========
 
@@ -110,10 +112,19 @@ collectScenarioRewards = function()
 	click(rightSide)
 	wait(2)
 	highlightRegion(okButtonRegion)
-	click(scanPattern(okButtonScenario, 3, okButtonRegion))
-	wait(2)
+  click(scanPattern(okButtonScenario, 3, okButtonRegion))
+  wait(2)
+  collectAdditionalReward()
 	startFromBattleScreen = false
 	victory = victory + 1
+end
+
+collectAdditionalReward = function()
+  if(additionalReward) then
+    highlightRegion(okAdditionalReward)
+    click(scanPattern(okButtonScenario, 2, okAdditionalReward))
+    wait(2)
+  end
 end
 
 retryFromDefeat = function()
@@ -146,6 +157,7 @@ riftsRoutine = function()
       highlightRegion(okButtonRegion)
       click(scanPattern(okButtonRifts, 3, okButtonRegion))
       wait(2)
+      collectAdditionalReward()
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
   end
@@ -168,6 +180,7 @@ toaRoutine = function()
       highlightRegion(okButtonRegion)
       click(scanPattern(okButtonScenario, 3, okButtonRegion))
       wait(1)
+      collectAdditionalReward()
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
       wait(1)
@@ -193,6 +206,7 @@ dimensionalRoutine = function()
       highlightRegion(okButtonRegion)
       click(scanPattern(okButtonScenario, 3, okButtonRegion))
       wait(2)
+      collectAdditionalReward()
       highlightRegion(replayRegion)
       click(scanPattern(repeatButton, 3, replayRegion))
   end
