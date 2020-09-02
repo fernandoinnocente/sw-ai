@@ -7,7 +7,7 @@ Settings:setScanInterval(1)
 
 dialogInit()
 addCheckBox("debugMode", "Modo debug:", false)
-addCheckBox("additionalReward", "Verificar Reward adicional:", false)
+addCheckBox("verifyAdditionalReward", "Verificar Reward adicional:", false)
 newRow()
 addTextView("Número de repetições")
 addEditNumber("repetitions", "10")
@@ -120,10 +120,13 @@ collectScenarioRewards = function()
 end
 
 collectAdditionalReward = function()
-  if(additionalReward) then
+  if(verifyAdditionalReward) then
     highlightRegion(okAdditionalReward)
-    click(scanPattern(okButtonScenario, 2, okAdditionalReward))
-    wait(2)
+    local additionalRewardFound = scanPattern(okButtonScenario, 1, okAdditionalReward)
+    if(additionalRewardFound) then
+      click(additionalRewardFound)
+      wait(2)
+    end
   end
 end
 
